@@ -5,6 +5,7 @@ services:
     volumes:
       - ovpn-data:/etc/openvpn
       - ovpn-logs:/tmp/
+    restart: always
     ports:
       - "1194:1194/udp"
     cap_add:
@@ -16,6 +17,24 @@ services:
     command:
       - -log
       - "/tmp/openvpn-status.log"
+  dnsproxy:
+    image: defreitas/dns-proxy-server
+    container_name: dnsproxy
+    restart: always
+    networks:
+      vpnnetwork:
+        ipv4_address: 172.18.0.1
+    environment:
+      - "MG_REGISTER_CONTAINER_NAMES=1"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  vpnnetwork:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
 
 volumes:
   ovpn-data:
