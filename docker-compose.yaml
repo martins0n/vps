@@ -2,6 +2,8 @@ version: "3.9"
 services:
   openvpn:
     image: kylemanna/openvpn:2.4
+    depends_on:
+      - dnsproxy
     volumes:
       - ovpn-data:/etc/openvpn
       - ovpn-logs:/tmp/
@@ -14,6 +16,8 @@ services:
       - "NET_ADMIN"
   openvpn-viewer:
     image: ghcr.io/martins0n/openvpn-traffic-viewer:0.1.1
+    depends_on:
+      - dnsproxy
     volumes:
       - ovpn-logs:/tmp/
     networks:
