@@ -31,7 +31,7 @@ services:
     restart: always
     networks:
       vpnnetwork:
-        ipv4_address: 172.18.0.1
+        ipv4_address: 172.18.0.2
     environment:
       - "MG_REGISTER_CONTAINER_NAMES=1"
     volumes:
