@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  openvpn:
+    image: kylemanna/openvpn
+    volumes:
+      - ovpn-data:/etc/openvpn
+      - ovpn-logs:/tmp/
+    ports:
+      - "1194:1194/udp"
+    cap_add:
+      - "NET_ADMIN"
