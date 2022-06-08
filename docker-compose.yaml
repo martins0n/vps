@@ -6,6 +6,8 @@ services:
       - ovpn-data:/etc/openvpn
       - ovpn-logs:/tmp/
     restart: always
+    networks:
+      - vpnnetwork
     ports:
       - "1194:1194/udp"
     cap_add:
@@ -14,6 +16,8 @@ services:
     image: ghcr.io/martins0n/openvpn-traffic-viewer:0.1.1
     volumes:
       - ovpn-logs:/tmp/
+    networks:
+      - vpnnetwork
     command:
       - -log
       - "/tmp/openvpn-status.log"
