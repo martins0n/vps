@@ -18,7 +18,7 @@ services:
       - -log
       - "/tmp/openvpn-status.log"
   dnsproxy:
-    image: defreitas/dns-proxy-server
+    image: defreitas/dns-proxy-server:2.19.0
     container_name: dnsproxy
     restart: always
     networks:
