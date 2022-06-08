@@ -14,7 +14,8 @@ services:
     volumes:
       - ovpn-logs:/tmp/
     command:
-      - -log "/tmp/openvpn-status.log"
+      - -log
+      - "/tmp/openvpn-status.log"
 
 volumes:
   ovpn-data:
